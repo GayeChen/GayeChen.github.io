@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="React," />
 
 
 
@@ -80,13 +80,14 @@
 
 
 <meta name="description" content="一、简介是什么 HOC(全称HigherOrder Component)高阶组件，是一种React的进阶使用方法 定义：高阶组件是一种接受组件作为参数，并返回一个新组件的函数。所以高阶组件不是组件，而是函数主要目的 主要是为了组件复用  二、应用场景 代码复用，代码模块化 增删改props 渲染劫持  三、实现方式四、需要注意的问题 静态方法丢失 Refs属性不能传递">
+<meta name="keywords" content="React">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React进阶之HOC">
 <meta property="og:url" content="http://yoursite.com/2018/04/10/React进阶之HOC/index.html">
 <meta property="og:site_name" content="博客">
 <meta property="og:description" content="一、简介是什么 HOC(全称HigherOrder Component)高阶组件，是一种React的进阶使用方法 定义：高阶组件是一种接受组件作为参数，并返回一个新组件的函数。所以高阶组件不是组件，而是函数主要目的 主要是为了组件复用  二、应用场景 代码复用，代码模块化 增删改props 渲染劫持  三、实现方式四、需要注意的问题 静态方法丢失 Refs属性不能传递">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-10T06:52:38.928Z">
+<meta property="og:updated_time" content="2018-04-10T13:27:39.899Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React进阶之HOC">
 <meta name="twitter:description" content="一、简介是什么 HOC(全称HigherOrder Component)高阶组件，是一种React的进阶使用方法 定义：高阶组件是一种接受组件作为参数，并返回一个新组件的函数。所以高阶组件不是组件，而是函数主要目的 主要是为了组件复用  二、应用场景 代码复用，代码模块化 增删改props 渲染劫持  三、实现方式四、需要注意的问题 静态方法丢失 Refs属性不能传递">
@@ -200,6 +201,26 @@
         </li>
       
         
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -237,7 +258,7 @@
   
   
 
-  <article class="post post-type-tags" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
@@ -281,6 +302,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -349,6 +392,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/React/" rel="tag"># React</a>
+          
+        </div>
+      
 
       
       
@@ -367,6 +416,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/10/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -450,7 +503,25 @@
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
             
 
           </nav>
