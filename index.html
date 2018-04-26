@@ -262,6 +262,583 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/26/webpack4不完全升级指南/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gaye Cheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/26/webpack4不完全升级指南/" itemprop="url">webpack4不完全升级指南</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-26T10:20:10+08:00">
+                2018-04-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">Webpack</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/26/webpack4不完全升级指南/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/26/webpack4不完全升级指南/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/04/26/webpack4不完全升级指南/" class="leancloud_visitors" data-flag-title="webpack4不完全升级指南">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="react-family升级webpack4"><a href="#react-family升级webpack4" class="headerlink" title="react-family升级webpack4"></a>react-family升级webpack4</h2><h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><h5 id="重新安装webpack相关依赖包"><a href="#重新安装webpack相关依赖包" class="headerlink" title="重新安装webpack相关依赖包"></a>重新安装webpack相关依赖包</h5><ul>
+<li>webpack</li>
+<li>新增加webpack-cli</li>
+<li>html-webpack-plugin</li>
+<li>webpack-dev-server</li>
+<li>各种loader,主要是file-loader,url-loader，其他看着办</li>
+</ul>
+<h5 id="移除"><a href="#移除" class="headerlink" title="移除"></a>移除</h5><ul>
+<li>uglifyjs-webpack-plugin: production莫斯自动支持<br>-</li>
+</ul>
+<h3 id="配置改动"><a href="#配置改动" class="headerlink" title="配置改动"></a>配置改动</h3><h5 id="CommonsChunkPlugin"><a href="#CommonsChunkPlugin" class="headerlink" title="CommonsChunkPlugin"></a>CommonsChunkPlugin</h5><p> 移除<br> <figure class="highlight plain"><figcaption><span>webpack.config.optimization.splitChunks(&#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">  name: &apos;vendor&apos;</span><br><span class="line">&#125;),</span><br></pre></td></tr></table></figure></p>
+<p> 修改为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">optimization: &#123;</span><br><span class="line">       runtimeChunk: true,</span><br><span class="line">       splitChunks:&#123;</span><br><span class="line">           chunks: &apos;all&apos;,</span><br><span class="line">           minSize: 30000,</span><br><span class="line">           minChunks: 1,</span><br><span class="line">           maxAsyncRequests: 5,</span><br><span class="line">           maxInitialRequests: 3,</span><br><span class="line">           name: false,</span><br><span class="line">           cacheGroups: &#123;</span><br><span class="line">               vendor: &#123;</span><br><span class="line">                   name: &apos;vendor&apos;,</span><br><span class="line">                   chunks: &apos;initial&apos;,</span><br><span class="line">                   priority: -10,</span><br><span class="line">                   reuseExistingChunk: false,</span><br><span class="line">                   test: /node_modules\/(.*)\.js/</span><br><span class="line">               &#125;,</span><br><span class="line">               default: &#123;</span><br><span class="line">                   minChunks: 2,</span><br><span class="line">                   priority: -20,</span><br><span class="line">                   reuseExistingChunk: true</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="mode"><a href="#mode" class="headerlink" title="mode"></a>mode</h5><blockquote>
+<p>生产环境默认开启了很多代码优化（minify，splite等）</p>
+</blockquote>
+<blockquote>
+<p>开发时开启注视和验证，并且自动加上了eval devtool</p>
+</blockquote>
+<blockquote>
+<p>生产环境不支持watching，开发环境优化了重新打包的速度</p>
+</blockquote>
+<blockquote>
+<p>自动设置process.env.NODE_ENV到不同环境，也就是不需要DefinePlugin来做这个了</p>
+</blockquote>
+<blockquote>
+<p>如果你给mode设置为none，所有默认配置都去掉了</p>
+</blockquote>
+<ul>
+<li><p>方式1: 启动命令后加入参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">   &quot;dev&quot;: &quot;webpack --mode development&quot;,</span><br><span class="line">   &quot;build&quot;: &quot;webpack --mode production&quot;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方式2: 配置文件中加入mode属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">  mode: &apos;production&apos; // development</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>development模式下</p>
+<blockquote>
+<p>浏览器调试工具</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>开发阶段的详细错误日志和提示</p>
+</blockquote>
+<blockquote>
+<p>快速和优化的增量构建机制</p>
+</blockquote>
+<ul>
+<li>production模式下<blockquote>
+<p>开启所有的优化代码</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>更小的bundle大小</p>
+</blockquote>
+<blockquote>
+<p>去除掉只在开发阶段运行的代码</p>
+</blockquote>
+<blockquote>
+<p>Scope hoisting和Tree-shaking</p>
+</blockquote>
+<blockquote>
+<p>自动启用uglifyjs对代码进行压缩</p>
+</blockquote>
+<h5 id="ExtractTextWebpackPlugin"><a href="#ExtractTextWebpackPlugin" class="headerlink" title="ExtractTextWebpackPlugin"></a>ExtractTextWebpackPlugin</h5><ul>
+<li>使用mini-css-extract-plugin</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">const MiniCssExtractPlugin = require(&quot;mini-css-extract-plugin&quot;);</span><br><span class="line">module.exports = &#123;</span><br><span class="line">  plugins: [</span><br><span class="line">    new MiniCssExtractPlugin(&#123;</span><br><span class="line">      // Options similar to the same options in webpackOptions.output</span><br><span class="line">      // both options are optional</span><br><span class="line">      filename: &quot;[name].css&quot;,</span><br><span class="line">      chunkFilename: &quot;[id].css&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">  ],</span><br><span class="line">  module: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: /\.css$/,</span><br><span class="line">        use: [</span><br><span class="line">          MiniCssExtractPlugin.loader,  // replace ExtractTextPlugin.extract(&#123;..&#125;)</span><br><span class="line">          &quot;css-loader&quot;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/19/React-findDomNode与this-refs的区别/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gaye Cheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/19/React-findDomNode与this-refs的区别/" itemprop="url">React.findDomNode与this.refs的区别</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-19T12:33:00+08:00">
+                2018-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/19/React-findDomNode与this-refs的区别/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/19/React-findDomNode与this-refs的区别/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/04/19/React-findDomNode与this-refs的区别/" class="leancloud_visitors" data-flag-title="React.findDomNode与this.refs的区别">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="ref"><a href="#ref" class="headerlink" title="ref"></a>ref</h4><ul>
+<li>ref添加到Component上获取的是Component实例，添加到原生HTML上获取的是DOM对象</li>
+</ul>
+<h4 id="ReactDOM-findDOMNode"><a href="#ReactDOM-findDOMNode" class="headerlink" title="ReactDOM.findDOMNode"></a>ReactDOM.findDOMNode</h4><ul>
+<li>当传入参数是DOM，返回的就是DOM， 当参数是Component，返回的是Component render方法中返回的DOM</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/19/React拖拽库/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gaye Cheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/19/React拖拽库/" itemprop="url">React拖拽库</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-19T11:48:12+08:00">
+                2018-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/19/React拖拽库/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/19/React拖拽库/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/04/19/React拖拽库/" class="leancloud_visitors" data-flag-title="React拖拽库">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="react-draggable"><a href="#react-draggable" class="headerlink" title="react-draggable"></a>react-draggable</h2><h3 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h3><blockquote>
+<ul>
+<li>axis<pre><code>值为&apos;x&apos;/&apos;y&apos;
+只能在x或y轴上移动
+</code></pre></li>
+<li>grid<pre><code>值为整形数组 [25, 25], [25, 50]
+例:&lt;Draggable grid={[25, 80]}&gt;&lt;/Draggable&gt;
+表明x轴和y轴移动的最小单位为多少px
+</code></pre></li>
+<li>bounds<pre><code>例：&lt;Draggable bounds={{top: -100, left: -100, right: 100, bottom: 100}} &gt;&lt;/Draggable&gt;
+说明: 上下左右四个边界最大所能抵达的范围
+</code></pre></li>
+</ul>
+</blockquote>
+<h3 id="设置拖拽可用区和禁用区"><a href="#设置拖拽可用区和禁用区" class="headerlink" title="设置拖拽可用区和禁用区"></a>设置拖拽可用区和禁用区</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;Draggable handle=&quot;strong&quot; &#123;...dragHandlers&#125;&gt;</span><br><span class="line">          &lt;div className=&quot;box no-cursor&quot;&gt;</span><br><span class="line">            &lt;strong className=&quot;cursor&quot;&gt;&lt;div&gt;Drag here&lt;/div&gt;&lt;/strong&gt;</span><br><span class="line">            &lt;div&gt;You must click my handle to drag me&lt;/div&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">        &lt;/Draggable&gt;</span><br><span class="line"></span><br><span class="line">        &lt;Draggable cancel=&quot;strong&quot; &#123;...dragHandlers&#125;&gt;</span><br><span class="line">          &lt;div className=&quot;box&quot;&gt;</span><br><span class="line">            &lt;strong className=&quot;no-cursor&quot;&gt;Can&apos;t drag here&lt;/strong&gt;</span><br><span class="line">            &lt;div&gt;Dragging here works&lt;/div&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">        &lt;/Draggable&gt;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/18/利用Hexo快速搭建你的博客/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1193,16 +1770,16 @@
         
           
             <h2 id="一、会用-通过项目练手，多敲"><a href="#一、会用-通过项目练手，多敲" class="headerlink" title="一、会用,通过项目练手，多敲"></a>一、会用,通过项目练手，多敲</h2><ul>
-<li>重构Unicloud，realworld，仿饿了么，<h3 id="React"><a href="#React" class="headerlink" title="React"></a>React</h3><h4 id="1-React-redux-react-redux-react-router"><a href="#1-React-redux-react-redux-react-router" class="headerlink" title="1. React, redux, react-redux, react-router,"></a>1. React, redux, react-redux, react-router,</h4>react-router-redux, redux-saga, reselect, fetch,<br>superagent, Sortable, react-grid-layout<h4 id="2-antd-echarts"><a href="#2-antd-echarts" class="headerlink" title="2. antd, echarts"></a>2. antd, echarts</h4><h4 id="3-React-boilerplate-React-start-kit-Create-react-app"><a href="#3-React-boilerplate-React-start-kit-Create-react-app" class="headerlink" title="3. React-boilerplate, React-start-kit, Create-react-app"></a>3. React-boilerplate, React-start-kit, Create-react-app</h4><h4 id="4-immutable-js-lodash-moment"><a href="#4-immutable-js-lodash-moment" class="headerlink" title="4. immutable.js, lodash, moment"></a>4. immutable.js, lodash, moment</h4></li>
+<li>重构Unicloud，realworld，仿饿了么，<h3 id="React"><a href="#React" class="headerlink" title="React"></a>React</h3><h4 id="1-React-redux-react-redux-react-router"><a href="#1-React-redux-react-redux-react-router" class="headerlink" title="1. React, redux, react-redux, react-router,"></a>1. React, redux, react-redux, react-router,</h4>react-router-redux, redux-saga, reselect, fetch,<br>superagent, Sortable, react-grid-layout<h4 id="2-antd-echarts"><a href="#2-antd-echarts" class="headerlink" title="2. antd, echarts"></a>2. antd, echarts</h4><h4 id="3-dva-React-boilerplate-React-start-kit-Create-react-app-ts版"><a href="#3-dva-React-boilerplate-React-start-kit-Create-react-app-ts版" class="headerlink" title="3. dva, React-boilerplate, React-start-kit, Create-react-app-ts版"></a>3. dva, React-boilerplate, React-start-kit, Create-react-app-ts版</h4><h4 id="4-immutable-js-lodash-moment"><a href="#4-immutable-js-lodash-moment" class="headerlink" title="4. immutable.js, lodash, moment"></a>4. immutable.js, lodash, moment</h4></li>
 </ul>
 <h3 id="React-Native"><a href="#React-Native" class="headerlink" title="React Native"></a>React Native</h3><ul>
 <li>realworld移动版<h3 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h3></li>
-<li>组件：http-proxy-middleware</li>
+<li>框架, egg, express, koa , mongoose, sequelize, knext</li>
 <li>仿饿了么后台，博客后台，realworld后台部署到服务器<h3 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h3></li>
 <li>看文档</li>
 </ul>
 <h2 id="二、掌握基础知识"><a href="#二、掌握基础知识" class="headerlink" title="二、掌握基础知识"></a>二、掌握基础知识</h2><ul>
-<li>高程3（ES5），ES6入门，Http权威指南，MDN文档，掘金收藏的面试题，复习zhufeng</li>
+<li>高程3（ES5），ES6入门，Http权威指南，MDN文档，TypeScript,掘金收藏的面试题，复习zhufeng</li>
 </ul>
 <h2 id="三、看源码"><a href="#三、看源码" class="headerlink" title="三、看源码"></a>三、看源码</h2><ul>
 <li>redux等简单库的源码，antd，react源码，</li>
@@ -1467,7 +2044,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1478,7 +2055,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1489,7 +2066,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

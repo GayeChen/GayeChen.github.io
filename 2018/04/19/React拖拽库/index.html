@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="一、简介是什么 HOC(全称HigherOrder Component)高阶组件，是一种React的进阶使用方法 定义：高阶组件是一种接受组件作为参数，并返回一个新组件的函数。所以高阶组件不是组件，而是函数主要目的 主要是为了组件复用  二、应用场景 代码复用，代码模块化 增删改props 渲染劫持  三、实现方式四、需要注意的问题 静态方法丢失 Refs属性不能传递">
+<meta name="description" content="react-draggable参数说明  axis值为&amp;apos;x&amp;apos;/&amp;apos;y&amp;apos; 只能在x或y轴上移动  grid值为整形数组 [25, 25], [25, 50] 例:&amp;lt;Draggable grid={[25, 80]}&amp;gt;&amp;lt;/Draggable&amp;gt; 表明x轴和y轴移动的最小单位为多少px  bounds例：&amp;lt;Draggable bounds">
 <meta name="keywords" content="React">
 <meta property="og:type" content="article">
-<meta property="og:title" content="React进阶之HOC">
-<meta property="og:url" content="http://yoursite.com/2018/04/10/React进阶之HOC/index.html">
+<meta property="og:title" content="React拖拽库">
+<meta property="og:url" content="http://yoursite.com/2018/04/19/React拖拽库/index.html">
 <meta property="og:site_name" content="博客">
-<meta property="og:description" content="一、简介是什么 HOC(全称HigherOrder Component)高阶组件，是一种React的进阶使用方法 定义：高阶组件是一种接受组件作为参数，并返回一个新组件的函数。所以高阶组件不是组件，而是函数主要目的 主要是为了组件复用  二、应用场景 代码复用，代码模块化 增删改props 渲染劫持  三、实现方式四、需要注意的问题 静态方法丢失 Refs属性不能传递">
+<meta property="og:description" content="react-draggable参数说明  axis值为&amp;apos;x&amp;apos;/&amp;apos;y&amp;apos; 只能在x或y轴上移动  grid值为整形数组 [25, 25], [25, 50] 例:&amp;lt;Draggable grid={[25, 80]}&amp;gt;&amp;lt;/Draggable&amp;gt; 表明x轴和y轴移动的最小单位为多少px  bounds例：&amp;lt;Draggable bounds">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-10T13:27:39.899Z">
+<meta property="og:updated_time" content="2018-04-19T04:05:47.886Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="React进阶之HOC">
-<meta name="twitter:description" content="一、简介是什么 HOC(全称HigherOrder Component)高阶组件，是一种React的进阶使用方法 定义：高阶组件是一种接受组件作为参数，并返回一个新组件的函数。所以高阶组件不是组件，而是函数主要目的 主要是为了组件复用  二、应用场景 代码复用，代码模块化 增删改props 渲染劫持  三、实现方式四、需要注意的问题 静态方法丢失 Refs属性不能传递">
+<meta name="twitter:title" content="React拖拽库">
+<meta name="twitter:description" content="react-draggable参数说明  axis值为&amp;apos;x&amp;apos;/&amp;apos;y&amp;apos; 只能在x或y轴上移动  grid值为整形数组 [25, 25], [25, 50] 例:&amp;lt;Draggable grid={[25, 80]}&amp;gt;&amp;lt;/Draggable&amp;gt; 表明x轴和y轴移动的最小单位为多少px  bounds例：&amp;lt;Draggable bounds">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/04/10/React进阶之HOC/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/04/19/React拖拽库/"/>
 
 
 
 
 
-  <title>React进阶之HOC | 博客</title>
+  <title>React拖拽库 | 博客</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/10/React进阶之HOC/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/19/React拖拽库/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gaye Cheng">
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">React进阶之HOC</h1>
+          <h1 class="post-title" itemprop="name headline">React拖拽库</h1>
         
 
         <div class="post-meta">
@@ -292,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-10T10:57:49+08:00">
-                2018-04-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-19T11:48:12+08:00">
+                2018-04-19
               </time>
             
 
@@ -333,9 +333,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/04/10/React进阶之HOC/#comments" itemprop="discussionUrl">
+                <a href="/2018/04/19/React拖拽库/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/04/10/React进阶之HOC/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/04/19/React拖拽库/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -343,7 +343,7 @@
 
           
           
-             <span id="/2018/04/10/React进阶之HOC/" class="leancloud_visitors" data-flag-title="React进阶之HOC">
+             <span id="/2018/04/19/React拖拽库/" class="leancloud_visitors" data-flag-title="React拖拽库">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -374,21 +374,21 @@
       
 
       
-        <h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><h3 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h3><ul>
-<li>HOC(全称HigherOrder Component)高阶组件，是一种React的进阶使用方法</li>
-<li>定义：<strong>高阶组件是一种接受组件作为参数，并返回一个新组件的函数</strong>。所以高阶组件不是组件，而是函数<h3 id="主要目的"><a href="#主要目的" class="headerlink" title="主要目的"></a>主要目的</h3></li>
-<li>主要是为了组件复用</li>
+        <h2 id="react-draggable"><a href="#react-draggable" class="headerlink" title="react-draggable"></a>react-draggable</h2><h3 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h3><blockquote>
+<ul>
+<li>axis<pre><code>值为&apos;x&apos;/&apos;y&apos;
+只能在x或y轴上移动
+</code></pre></li>
+<li>grid<pre><code>值为整形数组 [25, 25], [25, 50]
+例:&lt;Draggable grid={[25, 80]}&gt;&lt;/Draggable&gt;
+表明x轴和y轴移动的最小单位为多少px
+</code></pre></li>
+<li>bounds<pre><code>例：&lt;Draggable bounds={{top: -100, left: -100, right: 100, bottom: 100}} &gt;&lt;/Draggable&gt;
+说明: 上下左右四个边界最大所能抵达的范围
+</code></pre></li>
 </ul>
-<h2 id="二、应用场景"><a href="#二、应用场景" class="headerlink" title="二、应用场景"></a>二、应用场景</h2><ul>
-<li>代码复用，代码模块化</li>
-<li>增删改props</li>
-<li>渲染劫持</li>
-</ul>
-<h2 id="三、实现方式"><a href="#三、实现方式" class="headerlink" title="三、实现方式"></a>三、实现方式</h2><h2 id="四、需要注意的问题"><a href="#四、需要注意的问题" class="headerlink" title="四、需要注意的问题"></a>四、需要注意的问题</h2><ul>
-<li>静态方法丢失</li>
-<li>Refs属性不能传递</li>
-</ul>
-
+</blockquote>
+<h3 id="设置拖拽可用区和禁用区"><a href="#设置拖拽可用区和禁用区" class="headerlink" title="设置拖拽可用区和禁用区"></a>设置拖拽可用区和禁用区</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;Draggable handle=&quot;strong&quot; &#123;...dragHandlers&#125;&gt;</span><br><span class="line">          &lt;div className=&quot;box no-cursor&quot;&gt;</span><br><span class="line">            &lt;strong className=&quot;cursor&quot;&gt;&lt;div&gt;Drag here&lt;/div&gt;&lt;/strong&gt;</span><br><span class="line">            &lt;div&gt;You must click my handle to drag me&lt;/div&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">        &lt;/Draggable&gt;</span><br><span class="line"></span><br><span class="line">        &lt;Draggable cancel=&quot;strong&quot; &#123;...dragHandlers&#125;&gt;</span><br><span class="line">          &lt;div className=&quot;box&quot;&gt;</span><br><span class="line">            &lt;strong className=&quot;no-cursor&quot;&gt;Can&apos;t drag here&lt;/strong&gt;</span><br><span class="line">            &lt;div&gt;Dragging here works&lt;/div&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">        &lt;/Draggable&gt;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -418,8 +418,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/06/next初体验/" rel="next" title="Next.js初体验">
-                <i class="fa fa-chevron-left"></i> Next.js初体验
+              <a href="/2018/04/18/利用Hexo快速搭建你的博客/" rel="next" title="利用Hexo快速搭建你的博客">
+                <i class="fa fa-chevron-left"></i> 利用Hexo快速搭建你的博客
               </a>
             
           </div>
@@ -428,8 +428,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/17/nginx反向代理基础配置/" rel="prev" title="nginx反向代理基础配置">
-                nginx反向代理基础配置 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/04/19/React-findDomNode与this-refs的区别/" rel="prev" title="React.findDomNode与this.refs的区别">
+                React.findDomNode与this.refs的区别 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -598,7 +598,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、简介"><span class="nav-number">1.</span> <span class="nav-text">一、简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#是什么"><span class="nav-number">1.1.</span> <span class="nav-text">是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主要目的"><span class="nav-number">1.2.</span> <span class="nav-text">主要目的</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、应用场景"><span class="nav-number">2.</span> <span class="nav-text">二、应用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、实现方式"><span class="nav-number">3.</span> <span class="nav-text">三、实现方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、需要注意的问题"><span class="nav-number">4.</span> <span class="nav-text">四、需要注意的问题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#react-draggable"><span class="nav-number">1.</span> <span class="nav-text">react-draggable</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#参数说明"><span class="nav-number">1.1.</span> <span class="nav-text">参数说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置拖拽可用区和禁用区"><span class="nav-number">1.2.</span> <span class="nav-text">设置拖拽可用区和禁用区</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -861,9 +861,9 @@ var jiathis_config={
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2018/04/10/React进阶之HOC/';
-          this.page.identifier = '2018/04/10/React进阶之HOC/';
-          this.page.title = 'React进阶之HOC';
+          this.page.url = 'http://yoursite.com/2018/04/19/React拖拽库/';
+          this.page.identifier = '2018/04/19/React拖拽库/';
+          this.page.title = 'React拖拽库';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://chengxiao.disqus.com/embed.js';
