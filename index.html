@@ -390,19 +390,7 @@
 <h3 id="配置改动"><a href="#配置改动" class="headerlink" title="配置改动"></a>配置改动</h3><h5 id="CommonsChunkPlugin"><a href="#CommonsChunkPlugin" class="headerlink" title="CommonsChunkPlugin"></a>CommonsChunkPlugin</h5><p> 移除<br> <figure class="highlight plain"><figcaption><span>webpack.config.optimization.splitChunks(&#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">  name: &apos;vendor&apos;</span><br><span class="line">&#125;),</span><br></pre></td></tr></table></figure></p>
 <p> 修改为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">optimization: &#123;</span><br><span class="line">       runtimeChunk: true,</span><br><span class="line">       splitChunks:&#123;</span><br><span class="line">           chunks: &apos;all&apos;,</span><br><span class="line">           minSize: 30000,</span><br><span class="line">           minChunks: 1,</span><br><span class="line">           maxAsyncRequests: 5,</span><br><span class="line">           maxInitialRequests: 3,</span><br><span class="line">           name: false,</span><br><span class="line">           cacheGroups: &#123;</span><br><span class="line">               vendor: &#123;</span><br><span class="line">                   name: &apos;vendor&apos;,</span><br><span class="line">                   chunks: &apos;initial&apos;,</span><br><span class="line">                   priority: -10,</span><br><span class="line">                   reuseExistingChunk: false,</span><br><span class="line">                   test: /node_modules\/(.*)\.js/</span><br><span class="line">               &#125;,</span><br><span class="line">               default: &#123;</span><br><span class="line">                   minChunks: 2,</span><br><span class="line">                   priority: -20,</span><br><span class="line">                   reuseExistingChunk: true</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
 <h5 id="mode"><a href="#mode" class="headerlink" title="mode"></a>mode</h5><blockquote>
-<p>生产环境默认开启了很多代码优化（minify，splite等）</p>
-</blockquote>
-<blockquote>
-<p>开发时开启注视和验证，并且自动加上了eval devtool</p>
-</blockquote>
-<blockquote>
-<p>生产环境不支持watching，开发环境优化了重新打包的速度</p>
-</blockquote>
-<blockquote>
-<p>自动设置process.env.NODE_ENV到不同环境，也就是不需要DefinePlugin来做这个了</p>
-</blockquote>
-<blockquote>
-<p>如果你给mode设置为none，所有默认配置都去掉了</p>
+<p>生产环境默认开启了很多代码优化（minify，splite等）<br>开发时开启注视和验证，并且自动加上了eval devtool<br>生产环境不支持watching，开发环境优化了重新打包的速度<br>自动设置process.env.NODE_ENV到不同环境，也就是不需要DefinePlugin来做这个了<br>如果你给mode设置为none，所有默认配置都去掉了</p>
 </blockquote>
 <ul>
 <li><p>方式1: 启动命令后加入参数</p>
@@ -413,34 +401,15 @@
 </li>
 <li><p>development模式下</p>
 <blockquote>
-<p>浏览器调试工具</p>
+<p>浏览器调试工具<br>开发阶段的详细错误日志和提示<br>快速和优化的增量构建机制</p>
+</blockquote>
+</li>
+<li><p>production模式下</p>
+<blockquote>
+<p>开启所有的优化代码<br>更小的bundle大小<br>去除掉只在开发阶段运行的代码<br>Scope hoisting和Tree-shaking<br>自动启用uglifyjs对代码进行压缩</p>
 </blockquote>
 </li>
 </ul>
-<blockquote>
-<p>开发阶段的详细错误日志和提示</p>
-</blockquote>
-<blockquote>
-<p>快速和优化的增量构建机制</p>
-</blockquote>
-<ul>
-<li>production模式下<blockquote>
-<p>开启所有的优化代码</p>
-</blockquote>
-</li>
-</ul>
-<blockquote>
-<p>更小的bundle大小</p>
-</blockquote>
-<blockquote>
-<p>去除掉只在开发阶段运行的代码</p>
-</blockquote>
-<blockquote>
-<p>Scope hoisting和Tree-shaking</p>
-</blockquote>
-<blockquote>
-<p>自动启用uglifyjs对代码进行压缩</p>
-</blockquote>
 <h5 id="ExtractTextWebpackPlugin"><a href="#ExtractTextWebpackPlugin" class="headerlink" title="ExtractTextWebpackPlugin"></a>ExtractTextWebpackPlugin</h5><ul>
 <li>使用mini-css-extract-plugin</li>
 </ul>
